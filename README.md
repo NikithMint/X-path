@@ -117,95 +117,31 @@ These are shown on the SelectorsHub practice page:
 
 
 
-
- using System.ComponentModel.DataAnnotations;
+<Project Sdk="Microsoft.NET.Sdk.Web">
  
-namespace WalletAuthApi.DTO
-{
-    public class LoginRequestDto
-    {
-        [Required]
-        public string Username { get; set; } = string.Empty;
-       
-        [Required]
-        public string Password { get; set; } = string.Empty;
-    }
-   
-    public class LoginResponseDto
-    {
-        public string Token { get; set; } = string.Empty;
-        public string RefreshToken { get; set; } = string.Empty;
-        public DateTime Expiration { get; set; }
-        public UserDto User { get; set; } = null!;
-    }
-   
-    public class RegisterRequestDto
-    {
-        [Required]
-        [MaxLength(100)]
-        public string Username { get; set; } = string.Empty;
-       
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; } = string.Empty;
-       
-        [Required]
-        [MinLength(6)]
-        public string Password { get; set; } = string.Empty;
-       
-        [Required]
-        public string FirstName { get; set; } = string.Empty;
-       
-        [Required]
-        public string LastName { get; set; } = string.Empty;
-       
-        [Required]
-        public string Role { get; set; } = string.Empty;
-    }
-   
-    public class UserDto
-    {
-        public string Id { get; set; }
-        public string Username { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
-        public string FirstName { get; set; } = string.Empty;
-        public string LastName { get; set; } = string.Empty;
-        public bool IsActive { get; set; }
-        public List<string> Roles { get; set; } = new();
-        public DateTime CreatedDate { get; set; }
-        public DateTime? LastLoginDate { get; set; }
-    }
-   
-    public class RefreshTokenRequestDto
-    {
-        [Required]
-        public string RefreshToken { get; set; } = string.Empty;
-    }
-   
-    public class UpdateProfileDto
-    {
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; } = string.Empty;
-       
-        [Required]
-        public string FirstName { get; set; } = string.Empty;
-       
-        [Required]
-        public string LastName { get; set; } = string.Empty;
-    }
-   
-    public class ChangePasswordDto
-    {
-        [Required]
-        public string CurrentPassword { get; set; } = string.Empty;
-       
-        [Required]
-        [MinLength(6)]
-        public string NewPassword { get; set; } = string.Empty;
-       
-        [Required]
-        [Compare("NewPassword")]
-        public string ConfirmPassword { get; set; } = string.Empty;
-    }
-}
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+ 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.10">
+     
+ 
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.6" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
+  </ItemGroup>
+ 
+</Project>
