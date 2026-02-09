@@ -112,3 +112,100 @@ These are shown on the SelectorsHub practice page:
  //a[normalize-space()="Why testRigor?"]
  //input[@id='pass']/div
  //label[substring(text(), string-length(text())-9)='User Email']
+
+
+
+
+
+
+ using System.ComponentModel.DataAnnotations;
+ 
+namespace WalletAuthApi.DTO
+{
+    public class LoginRequestDto
+    {
+        [Required]
+        public string Username { get; set; } = string.Empty;
+       
+        [Required]
+        public string Password { get; set; } = string.Empty;
+    }
+   
+    public class LoginResponseDto
+    {
+        public string Token { get; set; } = string.Empty;
+        public string RefreshToken { get; set; } = string.Empty;
+        public DateTime Expiration { get; set; }
+        public UserDto User { get; set; } = null!;
+    }
+   
+    public class RegisterRequestDto
+    {
+        [Required]
+        [MaxLength(100)]
+        public string Username { get; set; } = string.Empty;
+       
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; } = string.Empty;
+       
+        [Required]
+        [MinLength(6)]
+        public string Password { get; set; } = string.Empty;
+       
+        [Required]
+        public string FirstName { get; set; } = string.Empty;
+       
+        [Required]
+        public string LastName { get; set; } = string.Empty;
+       
+        [Required]
+        public string Role { get; set; } = string.Empty;
+    }
+   
+    public class UserDto
+    {
+        public string Id { get; set; }
+        public string Username { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public bool IsActive { get; set; }
+        public List<string> Roles { get; set; } = new();
+        public DateTime CreatedDate { get; set; }
+        public DateTime? LastLoginDate { get; set; }
+    }
+   
+    public class RefreshTokenRequestDto
+    {
+        [Required]
+        public string RefreshToken { get; set; } = string.Empty;
+    }
+   
+    public class UpdateProfileDto
+    {
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; } = string.Empty;
+       
+        [Required]
+        public string FirstName { get; set; } = string.Empty;
+       
+        [Required]
+        public string LastName { get; set; } = string.Empty;
+    }
+   
+    public class ChangePasswordDto
+    {
+        [Required]
+        public string CurrentPassword { get; set; } = string.Empty;
+       
+        [Required]
+        [MinLength(6)]
+        public string NewPassword { get; set; } = string.Empty;
+       
+        [Required]
+        [Compare("NewPassword")]
+        public string ConfirmPassword { get; set; } = string.Empty;
+    }
+}
